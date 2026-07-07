@@ -25,6 +25,12 @@ pl.Config.set_tbl_rows(20)
 def add_player_rolling_features(df: pl.DataFrame) -> pl.DataFrame:
     df = df.sort(["player_id", "season", "week"])
 
+    # raw last-game actual (not averaged) -- used for the "predict last week's
+    # score" naive baseline, distinct from the rolling3g average
+    df = df.with_columns(
+        pl.col("fantasy_points_ppr").shift(1).over("player_id").alias("last_game_fantasy_points")
+    )
+
     # rolling 3-game form: allowed to carry across a season boundary (a player's
     # most recent 3 games are informative even in week 1 of a new season)
     rolling_cols = ["fantasy_points_ppr", "carries", "targets", "snap_pct"]
@@ -121,6 +127,7 @@ def main():
     feature_cols = [
         "player_id", "player_display_name", "position", "team", "opponent_team",
         "season", "week",
+        "last_game_fantasy_points",
         "fantasy_points_ppr_rolling3g", "carries_rolling3g", "targets_rolling3g",
         "snap_pct_rolling3g", "season_avg_fantasy_points_to_date",
         "opp_def_rolling3g_points_allowed", "opp_def_season_avg_points_allowed_to_date",
