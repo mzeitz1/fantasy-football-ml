@@ -26,6 +26,8 @@ Phase 1 (backtest) in progress.
 
 ## Setup
 
+macOS only: XGBoost needs the OpenMP runtime, which isn't bundled — `brew install libomp` before installing requirements.
+
 ```
 python3 -m venv venv
 source venv/bin/activate
