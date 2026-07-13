@@ -28,6 +28,8 @@ Phase 1 (backtest) in progress.
 
 macOS only: XGBoost needs the OpenMP runtime, which isn't bundled — `brew install libomp` before installing requirements.
 
+The KDB+/q pipeline (`kdb/`) uses PyKX, which needs a free KX license to execute q code (the pip package alone only gets "partial access"). Get a free KDB-X Community Edition license at the KX Developer Center (`developer.kx.com`) and install it with `pykx.license.install(license_string, format="STRING")`, or set the `QLIC` env var to a license file's directory.
+
 ```
 python3 -m venv venv
 source venv/bin/activate
