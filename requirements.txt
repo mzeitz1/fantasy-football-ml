@@ -6,3 +6,4 @@ xgboost
 matplotlib
 pyarrow
 pykx
+shap
