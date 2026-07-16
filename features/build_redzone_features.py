@@ -14,7 +14,7 @@ RED_ZONE_YARDLINE = 20
 
 
 def main():
-    pbp = pl.read_parquet("data/raw/pbp_2016_2024.parquet")
+    pbp = pl.read_parquet("data/raw/pbp_2016_2025.parquet")
     rz = pbp.filter(pl.col("yardline_100") <= RED_ZONE_YARDLINE)
 
     rz_rushes = (

@@ -37,9 +37,9 @@ def normalize_name(col: pl.Expr) -> pl.Expr:
 
 
 def main():
-    weekly = pl.read_parquet("data/raw/player_stats_weekly_2016_2024.parquet")
-    snaps = pl.read_parquet("data/raw/snap_counts_2016_2024.parquet")
-    injuries = pl.read_parquet("data/raw/injuries_2016_2024.parquet")
+    weekly = pl.read_parquet("data/raw/player_stats_weekly_2016_2025.parquet")
+    snaps = pl.read_parquet("data/raw/snap_counts_2016_2025.parquet")
+    injuries = pl.read_parquet("data/raw/injuries_2016_2025.parquet")
 
     weekly = weekly.filter(pl.col("position").is_in(SKILL_POSITIONS))
     print("weekly skill-position rows:", weekly.shape[0])

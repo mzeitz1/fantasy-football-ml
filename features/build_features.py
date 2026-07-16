@@ -115,7 +115,7 @@ def add_home_away(df: pl.DataFrame) -> pl.DataFrame:
     # (LAC, LV) across all seasons -- remap before joining or those team-weeks
     # silently fail to match
     relocation_map = {"SD": "LAC", "OAK": "LV"}
-    sched = pl.read_parquet("data/raw/schedules_2016_2024.parquet").select(
+    sched = pl.read_parquet("data/raw/schedules_2016_2025.parquet").select(
         ["season", "week", "home_team", "away_team"]
     ).with_columns(
         pl.col("home_team").replace(relocation_map),
@@ -140,7 +140,7 @@ def add_vegas_features(df: pl.DataFrame) -> pl.DataFrame:
     # the HOME team winning by more, so team_spread = spread_line for the home
     # team and -spread_line for the away team, with higher = more favored.
     relocation_map = {"SD": "LAC", "OAK": "LV"}
-    sched = pl.read_parquet("data/raw/schedules_2016_2024.parquet").select(
+    sched = pl.read_parquet("data/raw/schedules_2016_2025.parquet").select(
         ["season", "week", "home_team", "away_team", "spread_line", "total_line"]
     ).with_columns(
         pl.col("home_team").replace(relocation_map),

@@ -7,3 +7,5 @@ matplotlib
 pyarrow
 pykx
 shap
+beautifulsoup4
+requests
